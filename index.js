@@ -1,15 +1,8 @@
-function subsetsWithDup(nums) {
-  const result = [];
-  nums.sort((a, b) => a - b);
-  backtrack(0, []);
-  return result;
-  function backtrack(start, current) {
-    result.push([...current]);
-    for (let i = start; i < nums.length; i++) {
-      if (i > start && nums[i] === nums[i - 1]) continue;
-      current.push(nums[i]);
-      backtrack(i + 1, current);
-      current.pop();
-    }
-  }
+function minDepth(root) {
+  if (!root) return 0;
+  if (!root.left && !root.right) return 1;
+  let min = Infinity;
+  if (root.left) min = Math.min(min, minDepth(root.left));
+  if (root.right) min = Math.min(min, minDepth(root.right));
+  return min + 1;
 }
