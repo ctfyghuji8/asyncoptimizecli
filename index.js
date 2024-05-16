@@ -1,7 +1,10 @@
-const groupBy = (arr, func) =>
-  arr
-    .map(typeof func === "function" ? func : (val) => val[func])
-    .reduce((acc, val, i) => {
-      acc[val] = (acc[val] || []).concat(arr[i]);
-      return acc;
-    }, {});
+function findTheDifference(s, t) {
+  let result = 0;
+  for (const char of s) {
+    result ^= char.charCodeAt(0);
+  }
+  for (const char of t) {
+    result ^= char.charCodeAt(0);
+  }
+  return String.fromCharCode(result);
+}
