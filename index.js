@@ -1,10 +1,14 @@
-function findTheDifference(s, t) {
-  let result = 0;
-  for (const char of s) {
-    result ^= char.charCodeAt(0);
+function findRedundantConnection(edges) {
+  const parent = new Array(edges.length + 1).fill(-1);
+  for (const edge of edges) {
+    const u = find(parent, edge[0]);
+    const v = find(parent, edge[1]);
+    if (u === v) return edge;
+    parent[u] = v;
   }
-  for (const char of t) {
-    result ^= char.charCodeAt(0);
-  }
-  return String.fromCharCode(result);
+  return [];
+}
+function find(parent, i) {
+  if (parent[i] === -1) return i;
+  return find(parent, parent[i]);
 }
